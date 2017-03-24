@@ -1,0 +1,45 @@
+server:
+  port: 9080
+  session:
+    timeout: 120
+
+spring:
+  application:
+    name: 'poc-logging-client'
+  http:
+    encoding:
+      enabled: true
+      force: true
+      charset: UTF-8
+    converters:
+      preferred-json-mapper: jackson
+
+management:
+  health:
+    defaults:
+      enabled: true
+    status:
+      order: DOWN, OUT_OF_SERVICE, UNKNOWN, UP
+  info:
+    build:
+      enabled: true
+    defaults:
+      enabled: true
+    env:
+      enabled: true
+---
+spring:
+  profiles: development
+
+server:
+  port: 9081
+  session:
+      timeout: 120
+---
+spring:
+  profiles: production
+
+server:
+  port: 9082
+  session:
+      timeout: 60
